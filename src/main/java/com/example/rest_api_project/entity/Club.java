@@ -1,9 +1,7 @@
 package com.example.rest_api_project.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.LifecycleState;
 
 import java.util.ArrayList;
 import java.util.List;

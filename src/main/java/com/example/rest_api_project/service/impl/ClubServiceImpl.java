@@ -2,13 +2,13 @@ package com.example.rest_api_project.service.impl;
 
 
 import com.example.rest_api_project.entity.Club;
+import com.example.rest_api_project.exception.NotFoundException;
 import com.example.rest_api_project.repository.ClubRepo;
 import com.example.rest_api_project.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClubServiceImpl implements ClubService {
@@ -30,7 +30,7 @@ public class ClubServiceImpl implements ClubService {
         return club;
 */
 
-        return clubRepo.findById(id).orElseThrow(() -> new RuntimeException("Club not found!"));
+        return clubRepo.findById(id).orElseThrow(() -> new NotFoundException("Club with ID: " + id + " not found!"));
     }
 
     @Override

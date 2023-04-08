@@ -1,6 +1,7 @@
 package com.example.rest_api_project.controller;
 
 import com.example.rest_api_project.entity.Club;
+import com.example.rest_api_project.exception.NotFoundException;
 import com.example.rest_api_project.service.impl.ClubServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,11 @@ public class ClubController {
 
     @GetMapping("/{id}")
     public Club getById(@PathVariable int id) {
+
+        if (clubService.getById(id) == null) {
+            throw new NotFoundException("Club with ID: " + id + " not found!");
+        }
+
         return clubService.getById(id);
     }
 
@@ -26,7 +32,7 @@ public class ClubController {
     }
 
     @PostMapping("/")
-    public void save(@RequestBody Club club){
+    public void save(@RequestBody Club club) {
         clubService.save(club);
     }
 
@@ -39,6 +45,5 @@ public class ClubController {
     public void deleteById(@PathVariable int id) {
         clubService.deleteById(id);
     }
-
 
 }

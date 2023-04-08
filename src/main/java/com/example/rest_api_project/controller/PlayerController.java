@@ -1,11 +1,10 @@
 package com.example.rest_api_project.controller;
 
 import com.example.rest_api_project.dto.PlayerDTO;
-import com.example.rest_api_project.entity.Club;
 import com.example.rest_api_project.entity.Player;
+import com.example.rest_api_project.exception.NotFoundException;
 import com.example.rest_api_project.service.impl.ClubServiceImpl;
 import com.example.rest_api_project.service.impl.PlayerServiceImpl;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +23,11 @@ public class PlayerController {
 
     @GetMapping("/{id}")
     public Player getById(@PathVariable int id) {
+
+        if (playerService.getById(id) == null) {
+            throw new NotFoundException("Player with ID: " + id + " not found!");
+        }
+
         return playerService.getById(id);
     }
 
@@ -36,8 +40,6 @@ public class PlayerController {
     public void save(@RequestBody PlayerDTO playerDTO) {
 
         playerService.save(playerDTO);
-
-       // playerService.save(player);
 
     }
 

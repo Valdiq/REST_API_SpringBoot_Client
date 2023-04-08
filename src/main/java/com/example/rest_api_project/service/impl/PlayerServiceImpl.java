@@ -46,28 +46,13 @@ public class PlayerServiceImpl implements PlayerService {
         return players;
     }
 
-/*    @Override
-    public void save(Player player, int clubId) {
 
-        Club club = null;
-
-        Optional<Club> optional = clubRepo.findById(clubId);
-
-        if (optional.isPresent()) {
-            club = optional.get();
-        }
-
-        player.setClub(club);
-
-        playerRepo.save(player);
-    }*/
 
 /*
     @Override
     public void save(PlayerDTO playerDTO) {
 
-*/
-/*        Club club = Club.builder()
+      Club club = Club.builder()
                 .name(playerDTO.getClubDTO().getName())
                 .country(playerDTO.getClubDTO().getCountry())
                 .league(playerDTO.getClubDTO().getLeague())
@@ -139,10 +124,4 @@ public class PlayerServiceImpl implements PlayerService {
         playerRepo.deleteById(id);
     }
 
-/*    @Override
-    public List<Player> findByClubId(int id) {
-        List<Player> players = playerRepo.findByClubId(id);
-
-        return players;
-    }*/
 }

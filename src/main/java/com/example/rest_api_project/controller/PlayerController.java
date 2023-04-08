@@ -17,10 +17,6 @@ public class PlayerController {
     @Autowired
     private PlayerServiceImpl playerService;
 
-    @Autowired
-    private ClubServiceImpl clubService;
-
-
     @GetMapping("/{id}")
     public Player getById(@PathVariable int id) {
 

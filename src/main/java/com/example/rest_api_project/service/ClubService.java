@@ -1,6 +1,8 @@
 package com.example.rest_api_project.service;
 
 import com.example.rest_api_project.entity.Club;
+import com.example.rest_api_project.entity.Player;
+
 import java.util.List;
 
 public interface ClubService {

@@ -98,6 +98,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public List<Player> findAllByClub(Club club) {
+        return playerRepo.findAllByClub(club);
+    }
+
+    @Override
     public void update(PlayerDTO playerDTO) {
         Club club = null;
 

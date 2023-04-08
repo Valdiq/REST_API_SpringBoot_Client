@@ -1,6 +1,7 @@
 package com.example.rest_api_project.controller;
 
 import com.example.rest_api_project.dto.PlayerDTO;
+import com.example.rest_api_project.entity.Club;
 import com.example.rest_api_project.entity.Player;
 import com.example.rest_api_project.exception.NotFoundException;
 import com.example.rest_api_project.service.impl.ClubServiceImpl;
@@ -17,6 +18,9 @@ public class PlayerController {
     @Autowired
     private PlayerServiceImpl playerService;
 
+    @Autowired
+    private ClubServiceImpl clubService;
+
     @GetMapping("/{id}")
     public Player getById(@PathVariable int id) {
 
@@ -30,6 +34,20 @@ public class PlayerController {
     @GetMapping("/")
     public List<Player> getAll() {
         return playerService.getAll();
+    }
+
+    @GetMapping("/club/{id}")
+    public List<Player> getAllByClubId(@PathVariable int id) {
+
+        Club club = null;
+
+        if (clubService.getById(id) == null) {
+            throw new NotFoundException("Club with ID: " + id + " not found!");
+        }
+
+        club = clubService.getById(id);
+
+        return playerService.findAllByClub(club);
     }
 
     @PostMapping("/")
